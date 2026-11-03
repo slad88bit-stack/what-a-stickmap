@@ -57,7 +57,7 @@ const S23: React.FC = () => {
 					<HeroBadge x={940} y={badgeY(1.06, FLH + 60)} s={0.78} />
 					<Mic x={1090} y={600} s={0.66} rot={-10} glow={0.8} />
 					<Flashes f={f} x={1420} y={600} spread={760} n={5} k={0.8} />
-					<Callout f={f} t0={at('056')} t1={at('056') + 80} from={[1000, 520]} to={[700, 240]} text="СКАЗАТЬ НЕЧЕГО" c="#ff8a72" size={26} align="center" />
+					<Callout f={f} t0={at('271')} t1={at('271') + 80} from={[1000, 520]} to={[700, 240]} text="СКАЗАТЬ НЕЧЕГО" c="#ff8a72" size={26} align="center" />
 				</Svg>
 			</Layer>
 		</Stage>
@@ -100,7 +100,7 @@ const S24: React.FC = () => {
 const S25: React.FC = () => {
 	const {f, gf, at} = useShot();
 	const sp = useSpeaking(gf);
-	const grab = env(f, at('058') + 4, at('059') + 4, 8, 8);
+	const grab = env(f, at('281') + 4, at('291') + 4, 8, 8);
 	const cam = usePush(camOn(900, 580, 1.2), camOn(960, 560, 1.36));
 	return (
 		<Stage cam={cam} bg="#160f28" light={{x: 30, y: 10, o: 0.24, night: true}} grain={0.06}>
@@ -112,7 +112,7 @@ const S25: React.FC = () => {
 					<Actor who="hero" x={840} floor={FLH + 60} s={1.08} facing={1} faceTurn={0.5} look={[0.6, 0]} expr={sp === 'HERO' ? 'angry' : 'wide'} mouth={sp === 'HERO' ? 'open' : 'line'} pose={{...idle(gf, 59), lean: 3 - grab * 2, head: -3}} uid="h59" />
 					<Actor who="guard" x={1080} floor={FLH + 60} s={1.08} facing={-1} faceTurn={0.4} look={[-0.8, 0]} expr="angry" mouth="open" pose={reach({...idle(gf, 60), lean: 4}, 'F', [-96, -30], grab)} uid="gd59" />
 					<HeroBadge x={840} y={badgeY(1.08, FLH + 60)} s={0.78} />
-					<Callout f={f} t0={at('058') + 6} t1={at('058') + 70} from={[1120, 600]} to={[1380, 330]} text="НЕЛЬЗЯ, ЭФИР" c="#ff8a72" size={24} align="center" />
+					<Callout f={f} t0={at('281') + 6} t1={at('281') + 70} from={[1120, 600]} to={[1380, 330]} text="НЕЛЬЗЯ, ЭФИР" c="#ff8a72" size={24} align="center" />
 					<Mic x={700} y={600} s={0.6} rot={-6} glow={sp === 'HERO' ? 1 : 0.5} />
 				</Svg>
 			</Layer>
@@ -154,8 +154,8 @@ const S26: React.FC = () => {
 /* 062–064: толпа расступается коридором */
 const S27: React.FC = () => {
 	const {f, gf, at} = useShot();
-	const gap = interpolate(f, [at('062') - 10, at('062') + 80], [0, 300], clamp);
-	const gk = interpolate(f, [at('062') + 40, at('063') + 40], [0, 1], clamp);
+	const gap = interpolate(f, [at('301') - 10, at('301') + 80], [0, 300], clamp);
+	const gk = interpolate(f, [at('301') + 40, at('311') + 40], [0, 1], clamp);
 	const cam = usePush(camOn(940, 700, 1.06, {farBlur: 5}), camOn(1020, 740, 1.18, {farBlur: 5}));
 	return (
 		<Stage cam={cam} bg="#140e28" light={{x: 30, y: 10, o: 0.3, night: true}} grain={0.05}>
@@ -179,7 +179,7 @@ const S27: React.FC = () => {
 						<Actor who="maya" x={1330 - 150 * gk} floor={1230 + 40 * gk} s={0.9 + 0.26 * gk} facing={-1} faceTurn={0.25} look={[-0.5, 0]} expr="wide" mouth="line" pose={{...idle(gf, 63), lean: -4, head: 3, armF: [50, 36]}} uid="ma62" />
 					</g>
 					<CrowdBand f={f} y={1420} rows={3} n={14} step={196} x0={-260} sc={1.66} gap={gap} seed={9} />
-					<Callout f={f} t0={at('064')} t1={at('064') + 90} from={[1010, 900]} to={[1420, 620]} text="ОДНО СЛОВО" c="#9ff0b0" size={26} align="center" />
+					<Callout f={f} t0={at('311')} t1={at('311') + 90} from={[1010, 900]} to={[1420, 620]} text="ОДНО СЛОВО" c="#9ff0b0" size={26} align="center" />
 				</Svg>
 			</Layer>
 		</Stage>
@@ -285,7 +285,7 @@ const S31: React.FC = () => {
 					<Actor who="hero" x={780} floor={FL} seat={760} s={1.02} facing={1} faceTurn={0.4} look={[0.6, 0]} expr="normal" mouth={sp === 'HERO' ? 'open' : 'line'} pose={{...idle(gf, 68), armF: [40, 60], legB: [86, 80], legF: [92, 88]}} uid="h68" />
 					<Actor who="mom" x={1180} floor={FL} s={1.04} facing={-1} faceTurn={0.5} look={[-0.8, 0]} expr="worried" mouth={sp === 'MOM' ? 'open' : 'line'} pose={{...idle(gf, 69), armF: [46, 56], lean: 3}} uid="m68" />
 					<HeroBadge x={780} y={badgeY(1.02, FL) - 60} s={0.72} />
-					<Callout f={f} t0={at('068') + 10} t1={at('069') + 40} from={[1120, 620]} to={[1340, 340]} text="80 МЛН ОБИДЯТСЯ" c="#ff9ad0" size={22} align="center" />
+					<Callout f={f} t0={at('331') + 10} t1={at('341') + 40} from={[1120, 620]} to={[1340, 340]} text="80 МЛН ОБИДЯТСЯ" c="#ff9ad0" size={22} align="center" />
 				</Svg>
 			</Layer>
 		</Stage>
@@ -296,7 +296,7 @@ const S31: React.FC = () => {
 const S32: React.FC = () => {
 	const {f, gf, at} = useShot();
 	const cam = usePush(camOn(960, 620, 1.08), camOn(1000, 580, 1.22));
-	const post = env(f, at('071') - 6, at('072') + 10, 10, 10);
+	const post = env(f, at('351') - 6, at('351') + 10, 10, 10);
 	return (
 		<Stage cam={cam} bg="#141a38" light={{x: 40, y: 10, o: 0.32, night: true}} grain={0.05}>
 			<Layer depth={1.7}>
@@ -319,8 +319,8 @@ const S32: React.FC = () => {
 				<Svg>
 					<Actor who="hero" x={720} floor={FL} seat={790} s={1.02} facing={1} faceTurn={0.5} look={[0.6, 0]} expr="sleepy" pose={{...idle(gf, 70), armF: [50 + 30 * post, 60], legB: [86, 80], legF: [92, 88]}} uid="h70" />
 					<HeroBadge x={720} y={badgeY(1.02, FL) - 50} s={0.72} />
-					<DownGraph f={f} x={240} y={430} w={420} h={230} t0={at('074')} />
-					<Callout f={f} t0={at('074')} t1={at('074') + 80} from={[380, 330]} to={[420, 200]} text="СЧЁТЧИК НАЗАД" c="#ff8a72" size={22} align="center" />
+					<DownGraph f={f} x={240} y={430} w={420} h={230} t0={at('361')} />
+					<Callout f={f} t0={at('361')} t1={at('361') + 80} from={[380, 330]} to={[420, 200]} text="СЧЁТЧИК НАЗАД" c="#ff8a72" size={22} align="center" />
 				</Svg>
 			</Layer>
 		</Stage>
@@ -335,8 +335,8 @@ const S33: React.FC = () => {
 		<Stage cam={cam} bg="#120f28" light={{x: 40, y: 8, o: 0.28, night: true}} grain={0.06}>
 			<Layer depth={1.6}>
 				<Svg>
-					<BigNum f={f} x={960} y={400} from={84000000} to={12} t0={at('075') + 20} dur={at('076') - at('075') + 30} label="ПОДПИСЧИКОВ" s={0.86} />
-					<Callout f={f} t0={at('075') + 4} t1={at('076')} from={[700, 500]} to={[420, 250]} text="−79 000 000" c="#ff8a72" size={30} align="center" />
+					<BigNum f={f} x={960} y={400} from={84000000} to={12} t0={at('371') + 20} dur={at('371') - at('371') + 30} label="ПОДПИСЧИКОВ" s={0.86} />
+					<Callout f={f} t0={at('371') + 4} t1={at('371')} from={[700, 500]} to={[420, 250]} text="−79 000 000" c="#ff8a72" size={30} align="center" />
 				</Svg>
 			</Layer>
 			<Layer depth={1}>
@@ -367,7 +367,7 @@ const S34: React.FC = () => {
 const S35: React.FC = () => {
 	const {f, gf, at} = useShot();
 	const cam = usePush(camOn(960, 600, 1.1), camOn(960, 560, 1.26));
-	const drop = interpolate(f, [at('080') + 10, at('080') + 40], [-260, 0], clamp);
+	const drop = interpolate(f, [at('391') + 10, at('391') + 40], [-260, 0], clamp);
 	return (
 		<Stage cam={cam} bg="#1c2240" light={{x: 60, y: 10, o: 0.32, night: true}}>
 			<Layer depth={1.8}>
@@ -411,7 +411,7 @@ const S36: React.FC = () => {
 					<rect x={560} y={740} width={880} height={26} rx={8} fill="#6b5a48" />
 					<Actor who="hero" x={820} floor={FL} seat={734} s={1.02} facing={1} faceTurn={0.3} look={[0.3, 0.2]} expr="worried" pose={{...idle(gf, 81), armF: [56, 62], legB: [86, 80], legF: [92, 88], head: 6}} uid="h81" />
 					<HeroBadge x={820} y={badgeY(1.02, FL) - 60} s={0.72} />
-					<Letter f={f} x={1240} y={620} s={0.62} t0={at('081')} />
+					<Letter f={f} x={1240} y={620} s={0.62} t0={at('401')} />
 				</Svg>
 			</Layer>
 		</Stage>
@@ -425,11 +425,11 @@ const S37: React.FC = () => {
 	return (
 		<Stage cam={cam} bg="#221d3a" light={{x: 30, y: 10, o: 0.34, night: true}}>
 			<Layer depth={1.5}>
-				<Letter f={f} x={960} y={560} s={1.02} t0={at('084') - 40} />
+				<Letter f={f} x={960} y={560} s={1.02} t0={at('411') - 40} />
 			</Layer>
 			<Layer depth={1}>
 				<Svg>
-					<Callout f={f} t0={at('086')} t1={at('086') + 90} from={[1180, 420]} to={[1440, 200]} text="ТРИ РАЗА ПОДРЯД" c="#ffc94a" size={24} align="center" />
+					<Callout f={f} t0={at('421')} t1={at('421') + 90} from={[1180, 420]} to={[1440, 200]} text="ТРИ РАЗА ПОДРЯД" c="#ffc94a" size={24} align="center" />
 				</Svg>
 			</Layer>
 		</Stage>
@@ -493,7 +493,7 @@ const S39: React.FC = () => {
 							<circle key={i} cx={-22 + i * 22} cy={-4} r={7} fill="#9fe8ff" opacity={blink ? 0.9 : 0.3} />
 						))}
 					</g>
-					<Callout f={f} t0={at('090')} t1={at('090') + 100} from={[1120, 600]} to={[1400, 320]} text="НЕ СРАЗУ" c="#ffc94a" size={26} align="center" />
+					<Callout f={f} t0={at('441')} t1={at('441') + 100} from={[1120, 600]} to={[1400, 320]} text="НЕ СРАЗУ" c="#ffc94a" size={26} align="center" />
 				</Svg>
 			</Layer>
 		</Stage>
