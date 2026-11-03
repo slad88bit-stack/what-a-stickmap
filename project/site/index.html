@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ты самый популярный человек на земле</title>
+<style>
+  :root { --bg:#0b0d1e; --panel:#141a34; --line:#26305c; --ink:#eef1ff; --dim:#98a3cf; --acc:#fce011; }
+  * { box-sizing:border-box; }
+  html,body { margin:0; background:var(--bg); color:var(--ink); font-family:"Segoe UI",system-ui,-apple-system,sans-serif; }
+  .wrap { max-width:1180px; margin:0 auto; padding:28px 20px 60px; }
+  .kicker { color:var(--acc); font-weight:800; letter-spacing:.14em; font-size:13px; text-transform:uppercase; }
+  h1 { font-size:clamp(26px,4.4vw,46px); line-height:1.08; margin:10px 0 6px; }
+  .meta { color:var(--dim); font-size:15px; margin-bottom:18px; }
+  .player { border-radius:16px; overflow:hidden; background:#000; box-shadow:0 24px 60px rgba(0,0,0,.55); }
+  video { display:block; width:100%; height:auto; background:#000; }
+  .row { display:grid; grid-template-columns:1fr 320px; gap:22px; margin-top:24px; }
+  @media (max-width:860px) { .row { grid-template-columns:1fr; } }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:18px 20px; }
+  h2 { font-size:16px; letter-spacing:.06em; text-transform:uppercase; color:var(--dim); margin:0 0 12px; }
+  p { line-height:1.6; margin:0 0 12px; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:6px; }
+  .chip { background:#1b2350; border:1px solid var(--line); color:var(--ink); border-radius:999px; padding:7px 13px; font-size:13px; cursor:pointer; }
+  .chip:hover { border-color:var(--acc); color:var(--acc); }
+  ol { list-style:none; margin:0; padding:0; }
+  li button { width:100%; display:flex; gap:12px; align-items:baseline; background:none; border:0; color:var(--ink);
+              padding:8px 6px; border-radius:8px; text-align:left; cursor:pointer; font-size:14.5px; font-family:inherit; }
+  li button:hover { background:#1b2350; }
+  .t { color:var(--acc); font-variant-numeric:tabular-nums; font-weight:700; min-width:44px; }
+  .links { display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; }
+  a.btn { display:inline-block; background:var(--acc); color:#10131f; font-weight:800; text-decoration:none;
+          padding:11px 18px; border-radius:10px; }
+  a.ghost { background:transparent; color:var(--ink); border:1px solid var(--line); }
+  .thumbs { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px; }
+  .thumbs img { width:100%; border-radius:10px; display:block; }
+  .small { color:var(--dim); font-size:13px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kicker">Что если…</div>
+  <h1>Ты самый популярный человек на земле</h1>
+  <div class="meta" id="meta">10:12 · анимация · русская озвучка</div>
+
+  <div class="player">
+    <video id="v" controls preload="metadata" poster="thumbnail.jpg" playsinline>
+      <source src="Long.mp4" type="video/mp4" />
+      Ваш браузер не умеет показывать видео. <a href="Long.mp4">Скачать файл</a>.
+    </video>
+  </div>
+
+  <div class="links">
+    <a class="btn" href="Long.mp4" download>Скачать видео (mp4)</a>
+    <a class="btn ghost" href="thumbnail.jpg" download>Скачать превью</a>
+  </div>
+
+  <div class="row">
+    <div class="card">
+      <h2>О чём это</h2>
+      <p>Одна ночь. Пять подписчиков превращаются в восемьдесят четыре миллиона. А на следующее утро
+      ты идёшь в магазин за хлебом — и двенадцать человек идут за тобой и снимают, как ты выбираешь батон.</p>
+      <p>История про то, что бывает, когда тебя смотрят все и не видит никто: концерт на двенадцать тысяч мест,
+      договор, который подписывают не читая, и кухня, где наконец можно есть макароны прямо из кастрюли.</p>
+      <p>В конце останется один вопрос. И он не про счётчик.</p>
+      <div class="chips">
+        <span class="chip">#чтоЕсли</span><span class="chip">#стикмен</span>
+        <span class="chip">#анимация</span><span class="chip">#популярность</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Главы</h2>
+      <ol id="chapters"></ol>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:22px">
+    <h2>Превью</h2>
+    <div class="thumbs">
+      <img src="thumbnail.jpg" alt="Превью ролика" />
+      <div>
+        <p class="small">1280×720, 16:9. Для загрузки на YouTube вместе с видео.</p>
+        <p class="small">Файлы в проекте: <b>project/out/Long.mp4</b> и <b>project/out/thumbnail.jpg</b>.</p>
+        <p class="small">Описание с таймкодами и тегами: <b>project/script/description.md</b>.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const chapters = [
+    [0,    'Шесть сорок один — пять подписчиков'],
+    [34,   'Правило первое'],
+    [77,   'Школа'],
+    [137,  'Зеркало и сорок отражений'],
+    [173,  'Возвращение: хлеб, школа, старые видео'],
+    [224,  'Восемьдесят четыре миллиона человек'],
+    [256,  'Дом, в котором нет места тебе'],
+    [325,  'Договор'],
+    [380,  'Концерт'],
+    [435,  'После концерта'],
+    [463,  'Письмо'],
+    [526,  'Двенадцать подписчиков']
+  ];
+  const v = document.getElementById('v');
+  const list = document.getElementById('chapters');
+  const fmt = (s) => Math.floor(s / 60) + ':' + String(Math.round(s % 60)).padStart(2, '0');
+  for (const [t, name] of chapters) {
+    const li = document.createElement('li');
+    const b = document.createElement('button');
+    b.innerHTML = '<span class="t">' + fmt(t) + '</span><span>' + name + '</span>';
+    b.onclick = () => { v.currentTime = t + 0.2; v.play(); v.scrollIntoView({behavior:'smooth', block:'center'}); };
+    li.appendChild(b); list.appendChild(li);
+  }
+  v.addEventListener('loadedmetadata', () => {
+    const s = Math.round(v.duration);
+    document.getElementById('meta').textContent =
+      Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0') + ' · 1920×1080 · анимация · русская озвучка';
+  });
+</script>
+</body>
+</html>
