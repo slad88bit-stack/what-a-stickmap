@@ -1,25 +1,22 @@
-# Проект «Ты самый популярный человек на земле» — состояние
+# «Ты самый популярный человек на земле» — пересборка после потери воркспейса
 
-Воркспейс-песочница обнулилась между ходами: из готового проекта уцелели только
-два голосовых файла, всё остальное (сценарий, 43 сцены, таймлайн, звук) пришлось
-восстанавливать. Чтобы это не повторилось, проект живёт **внутри git-репозитория**
-и коммитится после каждого хода.
+Проект живёт в репозитории и коммитится каждый ход: песочница обнуляется между ходами.
 
-## Что в репозитории
-- `project/` — шаблон скилла (Remotion), `tools/` — скрипты скилла.
-- Готовые артефакты рендера складывать в `project/out/` (в git не попадает).
+## Готово
+- `script/blocks.mjs` — 93 реплики (8 блоков), `script/lines.json`, `script/clips.json` (19 клипов).
+- `public/vo/clip01…clip10`, `clip20`, `clip22` — озвучка (voice-00 рассказчик, 01 герой, 02 Майя, 03 мама).
+  `clip20`/`clip22` — дословно прежние дубли финала, их текст в сценарии совпадает посимвольно.
+- `src/story/shotsA.tsx` (S01–S21) и `shotsB.tsx` (S22–S41) — 43 сцены, `shots.tsx` их склеивает.
+- `src/story/places.tsx` — телефон, толпа, коридор в толпе, мемы, письмо, микрофон, график отписок.
+- `src/Thumb.tsx` — обложка (композиция `Thumb`).
 
-## Порядок сборки
-1. `npm install` (в `project/`).
-2. Сценарий → `tools/build-lines.mjs` → `public/vo/clipNN.mp3` (озвучка).
-3. `tools/build-timeline.mjs` → `tools/check-plans.mjs`.
-4. `tools/storyboard.mjs Long` — глазами по кадрам.
-5. `tools/make-sound.mjs` → `public/sfx/bed.wav`.
-6. `tools/render.mjs Long` → `tools/check-video.mjs out/Long.mp4`.
+## Осталось
+1. Озвучить `clip11…clip16`, `clip18` (лимит TTS — 10 клипов на ход).
+2. `node tools/build-timeline.mjs` → `node tools/check-plans.mjs` → `tools/storyboard.mjs Long`.
+3. `node tools/make-sound.mjs` (звук на локации + эффекты, музыка не нужна).
+4. Рендер: `LD_LIBRARY_PATH=/tmp/lib2 BROWSER_EXECUTABLE=/tmp/chromium RENDER_SCALE=1 node tools/render.mjs Long`
+   (`/tmp/lib2` = распакованный `node_modules/@sparticuz/chromium/bin/al2023.tar.br` → `tar -xf /tmp/al2023.tar -C /tmp/lib`).
+5. `node tools/check-video.mjs out/Long.mp4`, описание с таймкодами.
 
-Запуск рендера в песочнице:
-```
-LD_LIBRARY_PATH=/tmp/lib BROWSER_EXECUTABLE=/tmp/chromium RENDER_SCALE=1 node tools/render.mjs Long
-```
-(`/tmp/chromium` + `/tmp/lib` пересоздаются командой:
-`node -e "require('@sparticuz/chromium').executablePath().then(console.log)"`)
+`src/story/timeline.json` сейчас — черновой (`tools/preview-timeline.mjs`, всем репликам по 96 кадров),
+нужен только чтобы смотреть кадры до готовой озвучки.
