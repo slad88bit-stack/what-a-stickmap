@@ -85,15 +85,29 @@ export const MemeGrid: React.FC<{f: number; x: number; y: number; s?: number; co
 };
 
 /* Бумажное письмо: строки проявляются по одной */
-export const Letter: React.FC<{f: number; x: number; y: number; s?: number; t0?: number; k?: number}> = ({f, x, y, s = 1, t0 = 0, k = 1}) => (
+export const Letter: React.FC<{f: number; x: number; y: number; s?: number; t0?: number; k?: number; words?: string[]}> = ({f, x, y, s = 1, t0 = 0, k = 1, words}) => (
 	<g transform={`translate(${x},${y}) scale(${s}) rotate(-3)`} opacity={k}>
 		<rect x={-330} y={-400} width={660} height={800} rx={10} fill="#efe7d0" />
 		<rect x={-330} y={-400} width={660} height={800} rx={10} fill="#fff" opacity={0.18} />
-		{Array.from({length: 13}).map((_, i) => {
-			const p = interpolate(f, [t0 + i * 9, t0 + i * 9 + 10], [0, 1], clamp);
-			const w = 520 - (i % 3) * 90;
-			return <rect key={i} x={-280} y={-330 + i * 54} width={w} height={12} rx={6} fill="#5d5546" opacity={0.5 * p} />;
-		})}
+		{words
+			? words.map((line, i) => (
+					<text
+						key={i}
+						x={-282}
+						y={-300 + i * 74}
+						fontFamily={HAND}
+						fontSize={50}
+						fill="#3e3a2e"
+						opacity={interpolate(f, [t0 + 8 + i * 16, t0 + 20 + i * 16], [0, 0.92], clamp)}
+					>
+						{line}
+					</text>
+			  ))
+			: Array.from({length: 13}).map((_, i) => {
+					const p = interpolate(f, [t0 + i * 9, t0 + i * 9 + 10], [0, 1], clamp);
+					const w = 520 - (i % 3) * 90;
+					return <rect key={i} x={-280} y={-330 + i * 54} width={w} height={12} rx={6} fill="#5d5546" opacity={0.5 * p} />;
+			  })}
 		<path d="M-280,300 q120,-60 300,10" stroke={HAND} strokeWidth={0} fill="none" />
 		<text x={210} y={330} textAnchor="end" fontFamily={HAND} fontSize={54} fill="#3e3a2e" opacity={interpolate(f, [t0 + 120, t0 + 140], [0, 0.9], clamp)}>
 			майя

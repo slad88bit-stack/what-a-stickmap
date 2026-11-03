@@ -123,7 +123,7 @@ export const HeroBadge: React.FC<{x: number; y: number; s?: number; value?: numb
 				</g>
 			) : null}
 			{ago >= 0 && ago < 14 ? <circle cx={x} cy={y} r={60 + ring * 140 * s} fill="none" stroke="#ffe08a" strokeWidth={8 * (1 - ring)} opacity={1 - ring} /> : null}
-			<AgeBadge x={x} y={y} value={v} pop={pop} s={s} label={STORY.counter?.label} c={STORY.counter?.color} />
+			<AgeBadge x={x} y={y} value={v} pop={pop} s={s} label={v < 20 ? 'ПОДПИСЧИКОВ' : STORY.counter?.label} c={STORY.counter?.color} />
 		</g>
 	);
 };

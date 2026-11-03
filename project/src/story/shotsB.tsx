@@ -350,19 +350,16 @@ const S33: React.FC = () => {
 
 /* 077–079: популярность и любовь */
 const S34: React.FC = () => {
-	const {f, gf} = useShot();
-	const cam = usePush(camOn(960, 600, 1.08), camOn(960, 560, 1.2));
+	const {f} = useShot();
+	/* Split рисует свой полный кадр (AbsoluteFill) — внутрь <Svg> его класть нельзя, иначе пусто */
 	return (
-		<Stage cam={cam} bg="#101534" light={{x: 30, y: 10, o: 0.28, night: true}} grain={0.05}>
-			<Layer depth={1.4}>
-				<Svg>
-					<Split f={f} a={{label: 'ПОПУЛЯРНОСТЬ', num: '84 МЛН', color: '#9fe8ff', who: 'friend', expr: 'wide'}} b={{label: 'ЛЮБОВЬ', num: '12', color: '#ffc94a', who: 'hero', expr: 'sad'}} />
-				</Svg>
-			</Layer>
-		</Stage>
+		<Split
+			f={f}
+			a={{label: 'ПОПУЛЯРНОСТЬ', num: '84 МЛН', color: '#9fe8ff', who: 'hero', expr: 'wide'}}
+			b={{label: 'ЛЮБОВЬ', num: '12', color: '#ffc94a', who: 'hero', expr: 'sad'}}
+		/>
 	);
 };
-
 /* 080: письмо в конверте с марками */
 const S35: React.FC = () => {
 	const {f, gf, at} = useShot();
@@ -421,15 +418,24 @@ const S36: React.FC = () => {
 /* 084–086: «читал три раза подряд» */
 const S37: React.FC = () => {
 	const {f, gf, at} = useShot();
-	const cam = usePush(camOn(900, 620, 1.2), camOn(900, 580, 1.36));
+	const cam = usePush(camOn(960, 610, 1.0), camOn(960, 580, 1.1));
 	return (
 		<Stage cam={cam} bg="#221d3a" light={{x: 30, y: 10, o: 0.34, night: true}}>
 			<Layer depth={1.5}>
-				<Letter f={f} x={960} y={560} s={1.02} t0={at('831') - 40} />
+				<Svg>
+					<Letter
+						f={f}
+						x={960}
+						y={560}
+						s={1.02}
+						t0={at('831') - 40}
+						words={['Здравствуйте.', 'Не знаю вашего', 'имени. Мы виделись', 'один раз, и я была', 'в ужасном состоянии.', 'Вы сказали одно', 'слово. Спасибо.']}
+					/>
+				</Svg>
 			</Layer>
 			<Layer depth={1}>
 				<Svg>
-					<Callout f={f} t0={at('851')} t1={at('851') + 90} from={[1180, 420]} to={[1440, 200]} text="ТРИ РАЗА ПОДРЯД" c="#ffc94a" size={24} align="center" />
+					<Callout f={f} t0={at('851')} t1={at('851') + 90} from={[1180, 420]} to={[1380, 300]} text="ТРИ РАЗА ПОДРЯД" c="#ffc94a" size={24} align="center" />
 				</Svg>
 			</Layer>
 		</Stage>

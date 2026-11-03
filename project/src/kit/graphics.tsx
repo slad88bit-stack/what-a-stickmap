@@ -166,9 +166,9 @@ export const Split: React.FC<{f: number; a: Half; b: Half; vertical?: boolean}> 
 					{h.icon ? (
 						<g transform={`translate(${vertical ? 300 : 470},${vertical ? 520 : 520})`}>{h.icon}</g>
 					) : (
-						<Stickman id={'sp' + (first ? 'a' : 'b')} x={vertical ? 330 : 470} y={vertical ? 640 : 700} scale={1.9} pose={idle(f, first ? 1 : 2)} {...CAST[h.who ?? STORY.hero]} age={h.age ?? 0} expr={h.expr ?? 'normal'} look={[0, 0]} faceTurn={0} />
+						<Stickman id={'sp' + (first ? 'a' : 'b')} x={vertical ? 330 : 470} y={vertical ? 640 : 620} scale={1.75} pose={idle(f, first ? 1 : 2)} {...CAST[h.who ?? STORY.hero]} age={h.age ?? 0} expr={h.expr ?? 'normal'} look={[0, 0]} faceTurn={0} />
 					)}
-					<text x={vertical ? 720 : 470} y={vertical ? 600 : 1000} textAnchor="middle" fontSize={Math.min(vertical ? 260 : 190, (vertical ? 620 : 780) / Math.max(1, h.num.length * 0.62))} fontFamily={FONT} fontWeight={900} fill={h.color}>
+					<text x={vertical ? 720 : 470} y={vertical ? 600 : 1040} textAnchor="middle" fontSize={Math.min(vertical ? 260 : 150, (vertical ? 620 : 780) / Math.max(1, h.num.length * 0.62))} fontFamily={FONT} fontWeight={900} fill={h.color}>
 						{h.num}
 					</text>
 				</g>

@@ -131,7 +131,7 @@ const S05: React.FC = () => {
 		<>
 			<RuleCard
 				n="01"
-				title="ПРАВИЛО ПЕРВОЕ"
+				title="ПРАВИЛО"
 				text="Любят не за поступок, а за то, что придумали."
 				t={f - at('091') + 4}
 				fix="дорисовали удобного человека"
@@ -142,8 +142,8 @@ const S05: React.FC = () => {
 						<circle cx={-16} cy={-52} r={6} fill="#fff" />
 						<circle cx={16} cy={-52} r={6} fill="#fff" />
 						<path d="M-18,-16 q18,16 36,0" stroke="#fff" strokeWidth={6} fill="none" strokeLinecap="round" />
-						<path d="M88,-90 q60,-40 60,20" stroke="#ff6a5a" strokeWidth={6} fill="none" />
-						<path d="M-88,-90 q-60,-40 -60,20" stroke="#ff6a5a" strokeWidth={6} fill="none" />
+						<path d="M92,-10 L172,-10 M172,-10 l-16,-10 M172,-10 l-16,10" stroke="#ff6a5a" strokeWidth={6} fill="none" strokeLinecap="round" />
+						<path d="M-92,-10 L-172,-10 M-172,-10 l16,-10 M-172,-10 l16,10" stroke="#ff6a5a" strokeWidth={6} fill="none" strokeLinecap="round" />
 					</g>
 				}
 			/>
@@ -452,7 +452,7 @@ const S15b: React.FC = () => {
 	return (
 		<RuleCard
 			n="02"
-			title="ПРАВИЛО ВТОРОЕ"
+			title="ПРАВИЛО"
 			text="Толпа повторяет не слова, а то, что услышала."
 			t={f - at('381') + 4}
 			fix="эхо громче голоса"
