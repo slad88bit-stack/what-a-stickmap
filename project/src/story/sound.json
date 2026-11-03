@@ -1,11 +1,35 @@
 {
- "ambience": [{"from": "001", "to": "end", "kind": "hall", "gain": 0.05}],
+ "ambience": [
+  {"from": "001", "to": "051", "kind": "room", "gain": 0.05},
+  {"from": "051", "to": "181", "kind": "hall", "gain": 0.032},
+  {"from": "181", "to": "322", "kind": "room", "gain": 0.045},
+  {"from": "322", "to": "341", "kind": "street", "gain": 0.05},
+  {"from": "341", "to": "512", "kind": "night", "gain": 0.042},
+  {"from": "512", "to": "561", "kind": "room", "gain": 0.04},
+  {"from": "561", "to": "681", "kind": "crowd", "gain": 0.045},
+  {"from": "681", "to": "691", "kind": "night", "gain": 0.04},
+  {"from": "691", "to": "871", "kind": "room", "gain": 0.045},
+  {"from": "871", "to": "end", "kind": "fridge", "gain": 0.05}
+ ],
  "music": [],
  "sfx": [
-  {"at": "001", "off": 4, "type": "steps", "dur": 2.0, "pan": -0.4},
-  {"at": "002", "off": -6, "type": "steps", "dur": 1.5, "pan": 0.4},
-  {"at": "002", "off": 30, "type": "pop"},
-  {"at": "003", "off": 20, "type": "steps", "dur": 0.6},
-  {"at": "003", "off": 70, "type": "clap"}
+  {"at": "001", "off": 40, "type": "pop"},
+  {"at": "181", "off": 20, "type": "pop"},
+  {"at": "181", "off": 140, "type": "pop"},
+  {"at": "322", "off": 6, "type": "steps", "dur": 1.6, "pan": -0.3},
+  {"at": "322", "off": 120, "type": "chat", "pan": 0.4},
+  {"at": "322", "off": 260, "type": "chat", "pan": -0.4},
+  {"at": "512", "off": 4, "type": "ring"},
+  {"at": "513", "off": 12, "type": "click"},
+  {"at": "514", "off": 30, "type": "stamp"},
+  {"at": "517", "off": 10, "type": "click"},
+  {"at": "561", "off": 10, "type": "whoosh", "dur": 1.2},
+  {"at": "581", "off": 0, "type": "thud"},
+  {"at": "581", "off": 6, "type": "heartbeat", "dur": 3.0},
+  {"at": "591", "off": 0, "type": "whooshUp", "dur": 1.4},
+  {"at": "681", "off": 0, "type": "click"},
+  {"at": "781", "off": 0, "type": "crackle", "dur": 4.0},
+  {"at": "871", "off": 10, "type": "heartbeat", "dur": 3.0},
+  {"at": "921", "off": 8, "type": "pop"}
  ]
 }

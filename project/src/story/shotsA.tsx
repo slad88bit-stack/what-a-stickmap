@@ -5,7 +5,7 @@ import {env, gesture, idle, reach, walkTo} from '../kit/actions';
 import {Actor, useShot, useSpeaking} from '../kit/core';
 import type {ShotDef} from '../kit/coverage';
 import {HeroBadge, Layer, Mirror, Rays, Sleeper, Stage, Svg, camOn, clamp, mixCam, usePush} from '../kit/kit';
-import {Bedroom, Blanket, ClassroomEve, Corridor, Elevator, Entrance, Kitchen, KitchenTable, Lamp, NightStreet, SchoolYard} from '../kit/sets';
+import {Bedroom, Blanket, ClassroomEve, Corridor, Elevator, Entrance, Kitchen, KitchenTable, Lamp, NightStreet, SchoolYard, Shop} from '../kit/sets';
 import {Callout, Split} from '../kit/graphics';
 import {RuleCard} from '../kit/ui';
 import {FONT} from '../kit/ui';
@@ -74,8 +74,8 @@ const S02: React.FC = () => {
 const S03: React.FC = () => {
 	const {f, gf, at} = useShot();
 	const cam = usePush(camOn(960, 620, 1.06), camOn(1080, 560, 1.22));
-	const k1 = env(f, at('021'), at('031') - 4, 10, 10);
-	const k2 = env(f, at('031') + 10, at('031') + 120, 12, 12);
+	const k1 = env(f, at('051'), at('061') - 4, 10, 10);
+	const k2 = env(f, at('061') + 10, at('061') + 120, 12, 12);
 	return (
 		<Stage cam={cam} bg="#1b2348" light={{x: 24, y: 8, o: 0.34, night: true}}>
 			<Layer depth={1.7}>
@@ -91,9 +91,9 @@ const S03: React.FC = () => {
 				<Svg>
 					<Actor who="hero" x={760} floor={FLB} s={1.02} facing={1} faceTurn={0.2} look={[0.2, -0.2]} expr="worried" pose={{...idle(gf, 5), armB: [-14, 20]}} uid="h6" />
 					<HeroBadge x={760} y={badgeY(1.02, FLB)} s={0.78} />
-					<Callout f={f} t0={at('021') + 4} t1={at('031') - 6} from={[820, 560]} to={[1360, 250]} text="ШКОЛА" c="#9ff0b0" size={28} align="center" />
-					<Callout f={f} t0={at('031') + 6} t1={at('031') + 60} from={[820, 560]} to={[1360, 250]} text="ГОРОД" c="#9fe8ff" size={28} align="center" />
-					<Callout f={f} t0={at('031') + 64} t1={at('031') + 140} from={[820, 560]} to={[1360, 250]} text="ВЕСЬ МИР" c="#ffc94a" size={28} align="center" />
+					<Callout f={f} t0={at('051') + 4} t1={at('061') - 6} from={[820, 560]} to={[1360, 250]} text="ШКОЛА" c="#9ff0b0" size={28} align="center" />
+					<Callout f={f} t0={at('061') + 6} t1={at('061') + 60} from={[820, 560]} to={[1360, 250]} text="ГОРОД" c="#9fe8ff" size={28} align="center" />
+					<Callout f={f} t0={at('061') + 64} t1={at('061') + 140} from={[820, 560]} to={[1360, 250]} text="ВЕСЬ МИР" c="#ffc94a" size={28} align="center" />
 				</Svg>
 			</Layer>
 		</Stage>
@@ -133,7 +133,7 @@ const S05: React.FC = () => {
 				n="01"
 				title="ПРАВИЛО ПЕРВОЕ"
 				text="Любят не за поступок, а за то, что придумали."
-				t={f - at('041') + 4}
+				t={f - at('091') + 4}
 				fix="дорисовали удобного человека"
 				icon={
 					<g>
@@ -155,9 +155,9 @@ const S05: React.FC = () => {
 const S05b: React.FC = () => {
 	const {f, gf, at} = useShot();
 	const cam = usePush(camOn(960, 640, 1.08), camOn(1000, 600, 1.2));
-	const smile = env(f, at('051'), at('051') + 44, 10, 10);
-	const yes = env(f, at('051') + 46, at('051') + 86, 10, 10);
-	const no = env(f, at('051') + 88, at('061') + 30, 10, 12);
+	const smile = env(f, at('111'), at('111') + 44, 10, 10);
+	const yes = env(f, at('111') + 46, at('111') + 86, 10, 10);
+	const no = env(f, at('111') + 88, at('121') + 30, 10, 12);
 	return (
 		<Stage cam={cam} bg="#1a2044" light={{x: 40, y: 10, o: 0.34, night: true}}>
 			<Layer depth={1.5}>
@@ -171,9 +171,9 @@ const S05b: React.FC = () => {
 					<Actor who="friend" x={700} floor={FL} s={1} facing={1} faceTurn={0.5} look={[0.6, 0]} expr="normal" mouth={smile > 0.3 || yes > 0.3 ? 'smile' : 'line'} pose={{...idle(gf, 13), lean: 4, head: 6}} uid="cv1" />
 					<Actor who="neighbor" x={1240} floor={FL} s={1} facing={-1} faceTurn={0.5} look={[-0.6, 0]} expr="normal" mouth={no > 0.4 ? 'line' : 'smile'} pose={{...idle(gf, 14), lean: -4, head: 4, armF: [40, 40]}} uid="cv2" />
 					<HeroBadge x={960} y={badgeY(1.04)} s={0.76} />
-					<Callout f={f} t0={at('051') + 2} t1={at('051') + 44} from={[700, 560]} to={[420, 300]} text="УЛЫБАЕТСЯ" c="#9ff0b0" size={24} align="center" />
-					<Callout f={f} t0={at('051') + 46} t1={at('051') + 86} from={[1240, 560]} to={[1500, 300]} text="СОГЛАШАЕТСЯ" c="#9fe8ff" size={24} align="center" />
-					<Callout f={f} t0={at('051') + 88} t1={at('061') + 40} from={[1240, 600]} to={[1450, 340]} text="НИКОГДА НЕ ГОВОРИТ «НЕТ»" c="#ff8a72" size={20} align="center" />
+					<Callout f={f} t0={at('111') + 2} t1={at('111') + 44} from={[700, 560]} to={[420, 300]} text="УЛЫБАЕТСЯ" c="#9ff0b0" size={24} align="center" />
+					<Callout f={f} t0={at('111') + 46} t1={at('111') + 86} from={[1240, 560]} to={[1500, 300]} text="СОГЛАШАЕТСЯ" c="#9fe8ff" size={24} align="center" />
+					<Callout f={f} t0={at('111') + 88} t1={at('121') + 40} from={[1240, 600]} to={[1450, 340]} text="НИКОГДА НЕ ГОВОРИТ «НЕТ»" c="#ff8a72" size={20} align="center" />
 				</Svg>
 			</Layer>
 		</Stage>
@@ -186,7 +186,7 @@ const S06: React.FC = () => {
 	const sp = useSpeaking(gf);
 	const cam = usePush(camOn(1000, 640, 1.08), camOn(1120, 600, 1.24));
 	const mv = walkTo(f, -4, 40, 2160, 1280, 4, 0.3);
-	const mp: Pose = gesture('point', {...mv.pose, head: -4}, env(f, at('061') + 8, at('061') + 60, 8, 10), f);
+	const mp: Pose = gesture('point', {...mv.pose, head: -4}, env(f, at('131') + 8, at('131') + 60, 8, 10), f);
 	return (
 		<Stage cam={cam} bg="#e9d9ae" light={{x: 22, y: 10, o: 0.36}}>
 			<Layer depth={1.7}>
@@ -202,7 +202,7 @@ const S06: React.FC = () => {
 					<Actor who="hero" x={780} floor={FL} s={1.04} facing={1} faceTurn={0.5} look={[0.7, 0]} expr={sp === 'MAYA' ? 'wide' : 'normal'} pose={{...idle(gf, 11), armB: [-10, 18]}} uid="h14" />
 					<Actor who="maya" x={mv.x} floor={FL} s={1.02} facing={-1} faceTurn={0.6} look={[-0.8, 0]} expr="wide" mouth={sp === 'MAYA' ? undefined : 'line'} pose={mp} handF="point" vx={mv.vx} bob={mv.bob} uid="ma14" />
 					<HeroBadge x={780} y={badgeY(1.04)} s={0.78} />
-					<Callout f={f} t0={at('071') + 6} t1={at('071') + 90} from={[1180, 900]} to={[1420, 560]} text="22 ЧЕЛОВЕКА" c="#ffc94a" size={26} align="center" />
+					<Callout f={f} t0={at('141') + 6} t1={at('141') + 90} from={[1180, 900]} to={[1420, 560]} text="22 ЧЕЛОВЕКА" c="#ffc94a" size={26} align="center" />
 				</Svg>
 			</Layer>
 		</Stage>
@@ -233,7 +233,7 @@ const S08: React.FC = () => {
 	const {f, gf, at} = useShot();
 	const sp = useSpeaking(gf);
 	const cam = usePush(camOn(960, 600, 1.16), camOn(1000, 560, 1.3));
-	const sit = env(f, at('081') - 10, at('081') + 40, 8, 8);
+	const sit = env(f, at('171') - 10, at('171') + 40, 8, 8);
 	return (
 		<Stage cam={cam} bg="#e6d6ab" light={{x: 26, y: 10, o: 0.38}}>
 			<Layer depth={1.7}>
@@ -250,7 +250,7 @@ const S08: React.FC = () => {
 				<Svg>
 					<Actor who="hero" x={960} floor={FL} seat={800} s={1.04} facing={-1} faceTurn={0.4} look={[-0.6, 0]} expr={sp === 'HERO' ? 'normal' : 'worried'} pose={{...idle(gf, 13), armF: [40, 60], legB: [86, 80], legF: [92, 88], lean: -6 + sit * 2}} uid="h18" />
 					<HeroBadge x={960} y={badgeY(1.04) - 60} s={0.74} />
-					<Callout f={f} t0={at('091') + 4} t1={at('091') + 80} from={[1000, 700]} to={[1420, 400]} text="ЛУЧШИЙ УЧЕНИК" c="#9ff0b0" size={24} align="center" />
+					<Callout f={f} t0={at('181') + 4} t1={at('181') + 80} from={[1000, 700]} to={[1420, 400]} text="ЛУЧШИЙ УЧЕНИК" c="#9ff0b0" size={24} align="center" />
 				</Svg>
 			</Layer>
 		</Stage>
@@ -261,8 +261,8 @@ const S08: React.FC = () => {
 const S09: React.FC = () => {
 	const {f, gf, at} = useShot();
 	const cam = usePush(camOn(960, 600, 1.06), camOn(960, 560, 1.18));
-	const laugh = env(f, at('091'), at('101') - 6, 10, 14);
-	const stop = env(f, at('101') + 20, 999, 14, 1);
+	const laugh = env(f, at('191'), at('211') - 6, 10, 14);
+	const stop = env(f, at('211') + 20, 999, 14, 1);
 	return (
 		<Stage cam={cam} bg="#151b38" light={{x: 40, y: 10, o: 0.3, night: true}} grain={0.05}>
 			<Layer depth={1.5}>
@@ -293,7 +293,7 @@ const S10: React.FC = () => {
 			</Layer>
 			<Layer depth={1.25}>
 				<Svg>
-					<BigNum f={f} x={960} y={430} from={4800000} to={84000000} t0={at('111') + 8} dur={at('111') - at('111') + 20} label="СМОТРЯТ НА ТЕБЯ" s={0.9} />
+					<BigNum f={f} x={960} y={430} from={4800000} to={84000000} t0={at('221') + 8} dur={at('231') - at('221') + 20} label="СМОТРЯТ НА ТЕБЯ" s={0.9} />
 				</Svg>
 			</Layer>
 			<Layer depth={1}>
@@ -335,7 +335,7 @@ const S11: React.FC = () => {
 const S12: React.FC = () => {
 	const {f, gf, at} = useShot();
 	const cam = usePush(camOn(900, 640, 1.1), camOn(940, 600, 1.24));
-	const t = Math.max(0, Math.min(10, Math.floor((f - at('131')) / 30)));
+	const t = Math.max(0, Math.min(10, Math.floor((f - at('261')) / 30)));
 	return (
 		<Stage cam={cam} bg="#131a36" light={{x: 34, y: 10, o: 0.3, night: true}}>
 			<Layer depth={1.7}>
@@ -358,9 +358,9 @@ const S12: React.FC = () => {
 /* 029–033: зеркало и сорок повторов */
 const S13: React.FC = () => {
 	const {f, gf, at} = useShot();
-	const rep = Math.min(40, 1 + Math.floor((f - at('141')) / 4));
+	const rep = Math.min(40, 1 + Math.floor((f - at('281')) / 4));
 	const cam = usePush(camOn(980, 620, 1.06), camOn(1120, 580, 1.2));
-	const hand = env(f, at('151') - 6, at('151') + 70, 10, 12);
+	const hand = env(f, at('301') - 6, at('301') + 70, 10, 12);
 	return (
 		<Stage cam={cam} bg="#242c52" light={{x: 28, y: 10, o: 0.44}}>
 			<Layer depth={1}>
@@ -374,7 +374,7 @@ const S13: React.FC = () => {
 							</g>
 						))}
 					</Mirror>
-					<Actor who="hero" x={620} floor={880} s={1.04} facing={1} faceTurn={0.8} look={[0.9, 0]} expr={f > at('151') ? 'worried' : 'normal'} pose={{...idle(gf, 29), armF: hand > 0.4 ? [150, 30] : [6, 18], head: -2}} uid="h29" />
+					<Actor who="hero" x={620} floor={880} s={1.04} facing={1} faceTurn={0.8} look={[0.9, 0]} expr={f > at('311') ? 'worried' : 'normal'} pose={{...idle(gf, 29), armF: hand > 0.4 ? [150, 30] : [6, 18], head: -2}} uid="h29" />
 					<HeroBadge x={620} y={badgeY(1.04, 880)} s={0.76} />
 					<text x={1400} y={1000} textAnchor="middle" fontFamily={FONT} fontWeight={900} fontSize={52} fill="#dfe6ff">
 						×{rep} РАЗ
@@ -423,7 +423,7 @@ const S15: React.FC = () => {
 				<Svg>
 					<CrowdBand f={f} y={1180} rows={4} n={16} step={140} x0={-200} sc={1.02} k={0.92} seed={5} />
 					{echo.map((t, i) => {
-						const p = interpolate(f, [at('171') + i * 22, at('171') + i * 22 + 14], [0, 1], clamp);
+						const p = interpolate(f, [at('351') + i * 22, at('351') + i * 22 + 14], [0, 1], clamp);
 						return (
 							<g key={i} opacity={0.35 + 0.6 * p} transform={`translate(${300 + i * 380},${250 + (i % 2) * 170}) scale(${0.8 + 0.2 * p}) rotate(${(i % 2 ? 3 : -3)})`}>
 								<rect x={-190} y={-56} width={380} height={112} rx={24} fill="#1b2450" stroke="#3b4880" strokeWidth={3} />
@@ -437,9 +437,9 @@ const S15: React.FC = () => {
 			</Layer>
 			<Layer depth={1}>
 				<Svg>
-					<Actor who="hero" x={960} floor={1120} s={1.06} facing={1} faceTurn={0.3} look={[0.2, 0.2]} expr="sad" mouth={f < at('181') ? 'open' : 'line'} pose={{...idle(gf, 35), armF: [60, 40], head: -2}} uid="h35b" />
+					<Actor who="hero" x={960} floor={1120} s={1.06} facing={1} faceTurn={0.3} look={[0.2, 0.2]} expr="sad" mouth={f < at('371') ? 'open' : 'line'} pose={{...idle(gf, 35), armF: [60, 40], head: -2}} uid="h35b" />
 					<HeroBadge x={960} y={badgeY(1.06, 1120)} s={0.74} />
-					<Callout f={f} t0={at('181')} t1={at('181') + 90} from={[1000, 830]} to={[1400, 520]} text="ЭХО ГРОМЧЕ ГОЛОСА" c="#ff8a72" size={22} align="center" />
+					<Callout f={f} t0={at('371')} t1={at('371') + 90} from={[1000, 830]} to={[1400, 520]} text="ЭХО ГРОМЧЕ ГОЛОСА" c="#ff8a72" size={22} align="center" />
 				</Svg>
 			</Layer>
 		</Stage>
@@ -454,7 +454,7 @@ const S15b: React.FC = () => {
 			n="02"
 			title="ПРАВИЛО ВТОРОЕ"
 			text="Толпа повторяет не слова, а то, что услышала."
-			t={f - at('191') + 4}
+			t={f - at('381') + 4}
 			fix="эхо громче голоса"
 			icon={
 				<g>
@@ -576,7 +576,7 @@ const S19: React.FC = () => {
 const S20: React.FC = () => {
 	const {f, gf, at} = useShot();
 	const cam = usePush(camOn(900, 620, 1.14), camOn(940, 580, 1.28));
-	const pick = env(f, at('231') + 30, at('231') + 60, 8, 8);
+	const pick = env(f, at('461') + 30, at('461') + 60, 8, 8);
 	return (
 		<Stage cam={cam} bg="#141a34" light={{x: 24, y: 10, o: 0.3, night: true}}>
 			<Layer depth={1.7}>
@@ -595,7 +595,7 @@ const S20: React.FC = () => {
 						</text>
 						<circle cx={0} cy={96} r={12} fill={pick > 0.5 ? '#3aa37a' : '#ff5a5a'} />
 					</g>
-					<Callout f={f} t0={at('231') - 10} t1={at('241') + 20} from={[1200, 640]} to={[1400, 320]} text="«ХОТЕЛ, КАК РАНЬШЕ»" c="#9ff0b0" size={22} align="center" />
+					<Callout f={f} t0={at('471') - 10} t1={at('481') + 20} from={[1200, 640]} to={[1400, 320]} text="«ХОТЕЛ, КАК РАНЬШЕ»" c="#9ff0b0" size={22} align="center" />
 				</Svg>
 			</Layer>
 		</Stage>
@@ -634,28 +634,112 @@ const S21: React.FC = () => {
 	);
 };
 
+
+/* 322–326: возвращение — хлеб в магазине и двенадцать камер */
+const S42: React.FC = () => {
+	const {f, gf} = useShot();
+	const cam = usePush(camOn(980, 640, 1.12), camOn(1040, 600, 1.28));
+	return (
+		<Stage cam={cam} bg="#20304a" light={{x: 28, y: 10, o: 0.3, night: true}} grain={0.05}>
+			<Layer depth={1.7}>
+				<Shop f={gf} />
+			</Layer>
+			<Layer depth={1.35}>
+				<Svg>
+					<CrowdBand f={f} y={1045} rows={2} n={11} step={165} x0={-120} sc={1.06} k={0.8} phones seed={4} />
+				</Svg>
+			</Layer>
+			<Layer depth={1}>
+				<Svg>
+					<Actor who="hero" x={880} floor={FL} s={1.04} facing={-1} faceTurn={0.25} look={[0, 0]} expr="worried" pose={{...idle(gf, 322), armF: [30, 50]}} uid="h322" />
+					<HeroBadge x={880} y={badgeY(1.04)} s={0.76} />
+					<Callout f={f} t0={20} t1={160} from={[1150, 640]} to={[1350, 330]} text="ДВЕНАДЦАТЬ С КАМЕРАМИ" c="#9fe8ff" size={22} align="center" />
+				</Svg>
+			</Layer>
+		</Stage>
+	);
+};
+
+/* 327: в школе теперь здороваются телефоном */
+const S43: React.FC = () => {
+	const {f, gf} = useShot();
+	const cam = usePush(camOn(960, 620, 1.1), camOn(1010, 580, 1.26));
+	return (
+		<Stage cam={cam} bg="#1d2547" light={{x: 30, y: 8, o: 0.32, night: true}}>
+			<Layer depth={1.7}>
+				<Corridor f={gf} />
+			</Layer>
+			<Layer depth={1.2}>
+				<Svg>
+					<CrowdBand f={f} y={1045} rows={2} n={10} step={180} x0={20} sc={1.04} k={0.78} phones seed={9} />
+				</Svg>
+			</Layer>
+			<Layer depth={1}>
+				<Svg>
+					<Actor who="hero" x={820} floor={FL} s={1.02} facing={1} faceTurn={0.4} look={[0.6, 0]} expr="sad" pose={{...idle(gf, 327), head: 6}} uid="h327" />
+					<HeroBadge x={820} y={badgeY(1.02)} s={0.74} />
+					<Callout f={f} t0={10} t1={110} from={[1120, 700]} to={[1340, 420]} text="ВМЕСТО «ПРИВЕТ»" c="#ffc94a" size={22} align="center" />
+				</Svg>
+			</Layer>
+		</Stage>
+	);
+};
+
+/* 328–330: старые видео — год назад тебя никто не сохранил */
+const S44: React.FC = () => {
+	const {f, gf} = useShot();
+	const cam = usePush(camOn(920, 620, 1.14), camOn(990, 580, 1.3));
+	return (
+		<Stage cam={cam} bg="#131a36" light={{x: 34, y: 10, o: 0.3, night: true}} grain={0.05}>
+			<Layer depth={1.8}>
+				<Bedroom night f={gf} />
+			</Layer>
+			<Layer depth={1.2}>
+				<Svg>
+					<Phone x={1180} y={620} s={0.46} f={f} kind="post" glow={0.4} />
+					<text x={470} y={790} textAnchor="middle" fontFamily={FONT} fontWeight={900} fontSize={34} fill="#9fe8ff" opacity={0.9}>
+						ВИДЕО ГОД НАЗАД
+					</text>
+					<text x={470} y={836} textAnchor="middle" fontFamily={FONT} fontWeight={900} fontSize={28} fill="#8b98cc" opacity={0.9}>
+						0 СОХРАНЕНИЙ
+					</text>
+				</Svg>
+			</Layer>
+			<Layer depth={1}>
+				<Svg>
+					<Actor who="hero" x={820} floor={FL} s={1.04} facing={1} faceTurn={0.35} look={[0.8, 0]} expr="sad" pose={{...idle(gf, 328), armF: [60, 20], head: 4}} uid="h328" />
+					<HeroBadge x={820} y={badgeY(1.04)} s={0.74} />
+				</Svg>
+			</Layer>
+		</Stage>
+	);
+};
+
 export const SHOTS_A: ShotDef[] = [
 	{at: '001', C: S01},
-	{at: '005', C: S02},
-	{at: '006', C: S03},
-	{at: '008', C: S04},
-	{at: '010', C: S05},
-	{at: '012', C: S05b},
-	{at: '014', C: S06},
-	{at: '016', C: S07},
-	{at: '018', C: S08},
-	{at: '020', C: S09},
-	{at: '023', C: S10},
-	{at: '025', C: S11},
-	{at: '027', C: S12},
-	{at: '029', C: S13},
-	{at: '034', C: S14},
-	{at: '035', C: S15},
-	{at: '039', C: S15b},
-	{at: '041', C: S16},
-	{at: '043', C: S17},
-	{at: '044', C: S18},
-	{at: '045', C: S19},
-	{at: '047', C: S20},
-	{at: '050', C: S21},
+	{at: '041', C: S02},
+	{at: '051', C: S03},
+	{at: '071', C: S04},
+	{at: '091', C: S05},
+	{at: '111', C: S05b},
+	{at: '131', C: S06},
+	{at: '151', C: S07},
+	{at: '171', C: S08},
+	{at: '191', C: S09},
+	{at: '221', C: S10},
+	{at: '241', C: S11},
+	{at: '261', C: S12},
+	{at: '281', C: S13},
+	{at: '322', C: S42, whip: true},
+	{at: '327', C: S43},
+	{at: '328', C: S44},
+	{at: '331', C: S14},
+	{at: '341', C: S15},
+	{at: '381', C: S15b},
+	{at: '401', C: S16},
+	{at: '421', C: S17},
+	{at: '431', C: S18},
+	{at: '441', C: S19},
+	{at: '461', C: S20},
+	{at: '491', C: S21},
 ];

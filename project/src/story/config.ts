@@ -16,9 +16,9 @@ export const STORY: {
 		label: 'подписчики, млн',
 		keys: [
 			{line: '001', v: 5},
-			{line: '111', v: 84, roll: 46},
-			{line: '361', v: 79, roll: 40},
-			{line: '371', v: 12, roll: 34},
+			{line: '231', v: 84, roll: 46},
+			{line: '731', v: 79, roll: 40},
+			{line: '751', v: 12, roll: 34},
 		],
 	},
 	bed: 'sfx/bed.wav',
