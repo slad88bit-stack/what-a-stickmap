@@ -1,0 +1,5 @@
+node_modules/
+project/node_modules/
+project/out/
+project/.remotion/
+*.log
