@@ -3,3 +3,4 @@ project/node_modules/
 project/out/
 project/.remotion/
 *.log
+project/public/sfx/
