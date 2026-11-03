@@ -34,7 +34,7 @@ const S01: React.FC = () => {
 			</Layer>
 			<Layer depth={1.25}>
 				<Svg>
-					<Phone x={1120} y={660} s={0.52} f={f} kind="likes" value={4800000} glow={0.6 + 0.4 * Math.sin(f / 6)} />
+					<Phone x={1120} y={660} s={0.52} f={f} kind="notif" glow={0.6 + 0.4 * Math.sin(f / 6)} />
 					<Callout f={f} t0={6} t1={70} from={[1120, 470]} to={[700, 250]} text="6:41" c="#9fe8ff" size={30} align="center" />
 					<Callout f={f} t0={78} t1={150} from={[1120, 470]} to={[700, 250]} text="200+ УВЕДОМЛЕНИЙ" c="#ff9ad0" size={24} align="center" />
 					<HeroBadge x={1560} y={520} s={0.82} />

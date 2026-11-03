@@ -1,4 +1,12 @@
 {
- "long": {"name": "Long", "bed": "sfx/bed.wav"},
- "short": {"name": "Short", "bed": "sfx/bed.wav", "timeline": "src/story/timeline.json"}
+ "long": {
+  "name": "Long",
+  "bed": "sfx/bed.wav",
+  "concurrency": 2
+ },
+ "short": {
+  "name": "Short",
+  "bed": "sfx/bed.wav",
+  "timeline": "src/story/timeline.json"
+ }
 }

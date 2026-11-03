@@ -28,7 +28,7 @@ if (args.includes('--fresh')) fs.rmSync(dir, {recursive: true, force: true});
 fs.mkdirSync(dir, {recursive: true});
 const out = path.join(ROOT, 'out', `${c.name ?? id}.mp4`);
 // render.json may set "concurrency" (parallel browser tabs, default 6; lower it on weak machines)
-const remotionArgs = (from, to, file, conc = c.concurrency ?? 6) => ['remotion', 'render', id, file, `--frames=${from}-${to}`, '--muted', '--gl=angle', '--concurrency=' + conc, '--crf=18', '--log=error', '--timeout=120000'];
+const remotionArgs = (from, to, file, conc = c.concurrency ?? 6) => ['remotion', 'render', id, file, `--frames=${from}-${to}`, '--muted', '--gl=angle', '--concurrency=' + conc, '--crf=18', '--log=error', '--timeout=120000', ...(process.env.BROWSER_EXECUTABLE ? ['--browser-executable=' + process.env.BROWSER_EXECUTABLE] : [])];
 
 /* quick time estimate: render 30 frames and extrapolate */
 if (args.includes('--estimate')) {

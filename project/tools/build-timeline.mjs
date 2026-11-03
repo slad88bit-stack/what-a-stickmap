@@ -71,11 +71,11 @@ for (const c of clips) {
 		out.push({id: l.id, sp: l.sp, text: l.t, file: c.file, trimStart: from, from: frame, dur, env});
 		const cps = l.t.replace(/\s/g, '').length / (dur / FPS);
 		if (cps < 7 || cps > 24) warn.push(`${l.id}: ${(dur / FPS).toFixed(1)} s for ${l.t.replace(/\s/g, '').length} letters (${cps.toFixed(1)}/s) — check the split`);
-		const gap = Math.round((l.sp === 'N' ? 0.35 : 0.25) * FPS);
+		const gap = Math.round((l.sp === 'N' ? 0.5 : 0.3) * FPS);
 		frame += dur + gap;
 	}
 }
-const total = frame + 2 * FPS;
+const total = frame + 12 * FPS;
 fs.writeFileSync(path.join(ROOT, 'src', 'story', 'timeline.json'), JSON.stringify({fps: FPS, total, lines: out}));
 say(`timeline: ${out.length} lines, ${(total / FPS / 60).toFixed(2)} min (${(total / FPS).toFixed(0)} s)`);
 const bad = out.filter((l) => l.dur / FPS > 16);
