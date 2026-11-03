@@ -9,7 +9,7 @@ import {Bedroom, Blanket, ClassroomEve, Corridor, Elevator, Entrance, Kitchen, K
 import {Callout, Split} from '../kit/graphics';
 import {RuleCard} from '../kit/ui';
 import {FONT} from '../kit/ui';
-import {BigNum, CrowdSea, Flashes, MemeGrid, Phone} from './places';
+import {BigNum, CrowdBand, CrowdSea, Flashes, MemeGrid, Phone} from './places';
 import {FL, FLB, badgeY} from './lib';
 
 /* Входы всегда с края кадра, жест — на слове, камера всё время едет. */
@@ -124,18 +124,56 @@ const S04: React.FC = () => {
 	);
 };
 
-/* 010–013: правило первое — дорисовали удобного */
+/* 010–011: правило первое — дорисовали удобного (меловая доска) */
 const S05: React.FC = () => {
 	const {f, gf, at} = useShot();
-	const cam = usePush(camOn(860, 600, 1.1), camOn(900, 560, 1.24));
 	return (
-		<Stage cam={cam} bg="#141a38" light={{x: 30, y: 10, o: 0.3, night: true}} grain={0.05}>
+		<>
+			<RuleCard
+				n="01"
+				title="ПРАВИЛО ПЕРВОЕ"
+				text="Любят не за поступок, а за то, что придумали."
+				t={f - at('010') + 4}
+				fix="дорисовали удобного человека"
+				icon={
+					<g>
+						<circle cx={0} cy={-40} r={78} fill="none" stroke="#f4f1e6" strokeWidth={5} strokeDasharray="14 12" />
+						<circle cx={0} cy={-40} r={46} fill="#0b0b0d" />
+						<circle cx={-16} cy={-52} r={6} fill="#fff" />
+						<circle cx={16} cy={-52} r={6} fill="#fff" />
+						<path d="M-18,-16 q18,16 36,0" stroke="#fff" strokeWidth={6} fill="none" strokeLinecap="round" />
+						<path d="M88,-90 q60,-40 60,20" stroke="#ff6a5a" strokeWidth={6} fill="none" />
+						<path d="M-88,-90 q-60,-40 -60,20" stroke="#ff6a5a" strokeWidth={6} fill="none" />
+					</g>
+				}
+			/>
+		</>
+	);
+};
+
+/* 012–013: удобный улыбается, соглашается и никогда не говорит «нет» */
+const S05b: React.FC = () => {
+	const {f, gf, at} = useShot();
+	const cam = usePush(camOn(960, 640, 1.08), camOn(1000, 600, 1.2));
+	const smile = env(f, at('012'), at('012') + 44, 10, 10);
+	const yes = env(f, at('012') + 46, at('012') + 86, 10, 10);
+	const no = env(f, at('012') + 88, at('013') + 30, 10, 12);
+	return (
+		<Stage cam={cam} bg="#1a2044" light={{x: 40, y: 10, o: 0.34, night: true}}>
+			<Layer depth={1.5}>
+				<Svg>
+					<CrowdSea f={f} rows={2} y={1010} k={0.6} looking={1} />
+				</Svg>
+			</Layer>
 			<Layer depth={1}>
 				<Svg>
-					<RuleCard n="01" title="ТЕБЯ ДОРИСОВАЛИ" text="Любят не за то, что ты сделал, а за то, что они придумали." t={at('010')} fix="удобный человек" />
-					<Actor who="hero" x={300} floor={FL} s={0.94} facing={1} faceTurn={0.6} look={[0.8, -0.1]} expr="normal" pose={{...idle(gf, 9), armF: [24, 30]}} uid="h10" />
-					<HeroBadge x={300} y={badgeY(0.94)} s={0.7} />
-					<Callout f={f} t0={at('012')} t1={at('013') + 30} from={[1180, 620]} to={[1460, 420]} text="УДОБНЫЙ" c="#9fe8ff" size={24} align="center" />
+					<Actor who="hero" x={960} floor={FL} s={1.04} facing={1} faceTurn={0.4} look={[0.2, 0]} expr="worried" pose={{...idle(gf, 12), armF: [14, 26]}} uid="h12" />
+					<Actor who="friend" x={700} floor={FL} s={1} facing={1} faceTurn={0.5} look={[0.6, 0]} expr="normal" mouth={smile > 0.3 || yes > 0.3 ? 'smile' : 'line'} pose={{...idle(gf, 13), lean: 4, head: 6}} uid="cv1" />
+					<Actor who="neighbor" x={1240} floor={FL} s={1} facing={-1} faceTurn={0.5} look={[-0.6, 0]} expr="normal" mouth={no > 0.4 ? 'line' : 'smile'} pose={{...idle(gf, 14), lean: -4, head: 4, armF: [40, 40]}} uid="cv2" />
+					<HeroBadge x={960} y={badgeY(1.04)} s={0.76} />
+					<Callout f={f} t0={at('012') + 2} t1={at('012') + 44} from={[700, 560]} to={[420, 300]} text="УЛЫБАЕТСЯ" c="#9ff0b0" size={24} align="center" />
+					<Callout f={f} t0={at('012') + 46} t1={at('012') + 86} from={[1240, 560]} to={[1500, 300]} text="СОГЛАШАЕТСЯ" c="#9fe8ff" size={24} align="center" />
+					<Callout f={f} t0={at('012') + 88} t1={at('013') + 40} from={[1240, 600]} to={[1450, 340]} text="НИКОГДА НЕ ГОВОРИТ «НЕТ»" c="#ff8a72" size={20} align="center" />
 				</Svg>
 			</Layer>
 		</Stage>
@@ -374,26 +412,61 @@ const S14: React.FC = () => {
 	);
 };
 
-/* 035–040: правило второе — толпа повторяет услышанное */
+/* 035–038: у популярности нет ушей — толпа повторяет услышанное */
 const S15: React.FC = () => {
 	const {f, gf, at} = useShot();
-	const cam = usePush(camOn(960, 600, 1.08), camOn(1000, 560, 1.2));
+	const cam = usePush(camOn(960, 640, 1.06, {farBlur: 5}), camOn(1040, 600, 1.18, {farBlur: 5}));
+	const echo = ['он что-то сказал', 'он что-то скрывает', 'он сказал то, что мне нравится', 'он сказал то, что я и так думал'];
 	return (
 		<Stage cam={cam} bg="#121736" light={{x: 34, y: 8, o: 0.3, night: true}} grain={0.05}>
 			<Layer depth={1.6}>
 				<Svg>
-					<CrowdSea f={f} rows={3} y={1020} k={0.85} looking={1} wave={0.4} />
+					<CrowdBand f={f} y={1180} rows={4} n={16} step={140} x0={-200} sc={1.02} k={0.92} seed={5} />
+					{echo.map((t, i) => {
+						const p = interpolate(f, [at('036') + i * 22, at('036') + i * 22 + 14], [0, 1], clamp);
+						return (
+							<g key={i} opacity={0.35 + 0.6 * p} transform={`translate(${300 + i * 380},${250 + (i % 2) * 170}) scale(${0.8 + 0.2 * p}) rotate(${(i % 2 ? 3 : -3)})`}>
+								<rect x={-190} y={-56} width={380} height={112} rx={24} fill="#1b2450" stroke="#3b4880" strokeWidth={3} />
+								<text x={0} y={10} textAnchor="middle" fontFamily={FONT} fontWeight={800} fontSize={22} fill="#cfd8ff">
+									{t}
+								</text>
+							</g>
+						);
+					})}
 				</Svg>
 			</Layer>
 			<Layer depth={1}>
 				<Svg>
-					<RuleCard n="02" title="ТОЛПА ПОВТОРЯЕТ" text="Не то, что ты сказал. То, что она услышала." t={at('039')} fix="эхо громче голоса" />
-					<Actor who="hero" x={330} floor={FL} s={0.92} facing={1} faceTurn={0.5} look={[0.8, 0]} expr="sad" pose={{...idle(gf, 35), lean: -4}} uid="h35b" />
-					<HeroBadge x={330} y={badgeY(0.92)} s={0.68} />
-					<Callout f={f} t0={at('040')} t1={at('040') + 90} from={[1150, 700]} to={[1420, 400]} text="МЕНЬШЕ ТЕБЯ" c="#ff8a72" size={24} align="center" />
+					<Actor who="hero" x={960} floor={1120} s={1.06} facing={1} faceTurn={0.3} look={[0.2, 0.2]} expr="sad" mouth={f < at('038') ? 'open' : 'line'} pose={{...idle(gf, 35), armF: [60, 40], head: -2}} uid="h35b" />
+					<HeroBadge x={960} y={badgeY(1.06, 1120)} s={0.74} />
+					<Callout f={f} t0={at('038')} t1={at('038') + 90} from={[1000, 830]} to={[1400, 520]} text="ЭХО ГРОМЧЕ ГОЛОСА" c="#ff8a72" size={22} align="center" />
 				</Svg>
 			</Layer>
 		</Stage>
+	);
+};
+
+/* 039–040: правило второе (меловая доска) */
+const S15b: React.FC = () => {
+	const {f, at} = useShot();
+	return (
+		<RuleCard
+			n="02"
+			title="ПРАВИЛО ВТОРОЕ"
+			text="Толпа повторяет не слова, а то, что услышала."
+			t={f - at('039') + 4}
+			fix="эхо громче голоса"
+			icon={
+				<g>
+					<circle cx={-120} cy={-40} r={40} fill="#0b0b0d" />
+					<path d="M-160,60 q40,-90 80,0 z" fill="#f2b21c" />
+					<circle cx={60} cy={-40} r={30} fill="#0b0b0d" opacity={0.8} />
+					<circle cx={190} cy={-40} r={22} fill="#0b0b0d" opacity={0.55} />
+					<circle cx={290} cy={-40} r={16} fill="#0b0b0d" opacity={0.35} />
+					<path d="M-40,-140 q160,-60 320,0" stroke="#9ff0b0" strokeWidth={6} fill="none" strokeDasharray="12 10" />
+				</g>
+			}
+		/>
 	);
 };
 
@@ -567,6 +640,7 @@ export const SHOTS_A: ShotDef[] = [
 	{at: '006', C: S03},
 	{at: '008', C: S04},
 	{at: '010', C: S05},
+	{at: '012', C: S05b},
 	{at: '014', C: S06},
 	{at: '016', C: S07},
 	{at: '018', C: S08},
@@ -576,7 +650,8 @@ export const SHOTS_A: ShotDef[] = [
 	{at: '027', C: S12},
 	{at: '029', C: S13},
 	{at: '034', C: S14},
-	{at: '039', C: S15},
+	{at: '035', C: S15},
+	{at: '039', C: S15b},
 	{at: '041', C: S16},
 	{at: '043', C: S17},
 	{at: '044', C: S18},

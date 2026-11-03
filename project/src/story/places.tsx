@@ -3,7 +3,7 @@ import {interpolate} from 'remotion';
 import {FONT, HAND} from '../kit/ui';
 
 const clamp = {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'} as const;
-const fmtMln = (v: number) => (v / 1e6).toFixed(1).replace('.', ',') + ' МЛН';
+const fmtMln = (v: number) => (v >= 1e6 ? (v / 1e6).toFixed(1).replace('.', ',') + ' МЛН' : String(Math.round(v)));
 
 /* Телефон: экран с уведомлениями и счётчиком лайков */
 export const Phone: React.FC<{x: number; y: number; s?: number; f: number; value?: number; kind?: 'likes' | 'notif' | 'post'; glow?: number}> = ({x, y, s = 1, f, value = 4800000, kind = 'likes', glow = 1}) => (

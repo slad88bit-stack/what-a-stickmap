@@ -537,7 +537,7 @@ const S41: React.FC = () => {
 			<Layer depth={1.2}>
 				<Svg>
 					<Phone x={1180} y={560} s={0.5} f={f} kind="likes" value={12} glow={0.5} />
-					<text x={1180} y={330} textAnchor="middle" fontFamily={FONT} fontWeight={900} fontSize={34} fill="#9ff0b0">
+					<text x={700} y={250} textAnchor="middle" fontFamily={FONT} fontWeight={900} fontSize={38} fill="#9ff0b0">
 						12 ПОДПИСЧИКОВ
 					</text>
 				</Svg>

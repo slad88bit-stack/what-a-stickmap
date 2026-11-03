@@ -15,7 +15,7 @@ export const STORY: {
 	counter: {
 		label: 'подписчики, млн',
 		keys: [
-			{line: '001', v: 4.8},
+			{line: '001', v: 5},
 			{line: '024', v: 84, roll: 46},
 			{line: '074', v: 79, roll: 40},
 			{line: '076', v: 12, roll: 34},
