@@ -211,23 +211,16 @@ const S06: React.FC = () => {
 
 /* 016–017: аватарка и пятёрка за молчание */
 const S07: React.FC = () => {
-	const {f, gf, at} = useShot();
-	const cam = usePush(camOn(960, 600, 1.1), camOn(960, 560, 1.22));
+	const {f} = useShot();
+	/* Split рисует весь кадр сам (AbsoluteFill) — внутрь <Svg> его нельзя */
 	return (
-		<Stage cam={cam} bg="#16203f" light={{x: 40, y: 8, o: 0.34, night: true}}>
-			<Layer depth={1}>
-				<Svg>
-					<Split
-						f={f}
-						a={{label: 'АВАТАРКА', num: 'КТО-ТО', color: '#9fe8ff', who: 'friend', expr: 'wide'}}
-						b={{label: 'ПЯТЁРКА', num: '5', color: '#ffc94a', who: 'teacher', expr: 'normal'}}
-					/>
-				</Svg>
-			</Layer>
-		</Stage>
+		<Split
+			f={f}
+			a={{label: 'АВАТАРКА', num: 'КТО-ТО', color: '#9fe8ff', who: 'friend', expr: 'wide'}}
+			b={{label: 'ПЯТЁРКА', num: '5', color: '#ffc94a', who: 'teacher', expr: 'normal'}}
+		/>
 	);
 };
-
 /* 018–019: «Я просто сидел» */
 const S08: React.FC = () => {
 	const {f, gf, at} = useShot();
@@ -458,12 +451,24 @@ const S15b: React.FC = () => {
 			fix="эхо громче голоса"
 			icon={
 				<g>
-					<circle cx={-120} cy={-40} r={40} fill="#0b0b0d" />
-					<path d="M-160,60 q40,-90 80,0 z" fill="#f2b21c" />
-					<circle cx={60} cy={-40} r={30} fill="#0b0b0d" opacity={0.8} />
-					<circle cx={190} cy={-40} r={22} fill="#0b0b0d" opacity={0.55} />
-					<circle cx={290} cy={-40} r={16} fill="#0b0b0d" opacity={0.35} />
-					<path d="M-40,-140 q160,-60 320,0" stroke="#9ff0b0" strokeWidth={6} fill="none" strokeDasharray="12 10" />
+					<path d="M-190,110 q40,-100 80,0 z" fill="#f2b21c" />
+					<circle cx={-150} cy={-10} r={46} fill="#0b0b0d" />
+					<circle cx={-166} cy={-22} r={7} fill="#fff" />
+					<circle cx={-134} cy={-22} r={7} fill="#fff" />
+					<circle cx={-150} cy={14} r={11} fill="#f2b21c" opacity={0.9} />
+					{[
+						{cx: 40, r: 34, o: 0.8},
+						{cx: 190, r: 26, o: 0.55},
+						{cx: 300, r: 19, o: 0.32},
+					].map((e, i) => (
+						<g key={i} opacity={e.o}>
+							<circle cx={e.cx} cy={-10} r={e.r} fill="#0b0b0d" />
+							<circle cx={e.cx - e.r * 0.34} cy={-10 - e.r * 0.26} r={e.r * 0.15} fill="#fff" />
+							<circle cx={e.cx + e.r * 0.34} cy={-10 - e.r * 0.26} r={e.r * 0.15} fill="#fff" />
+							<circle cx={e.cx} cy={-10 + e.r * 0.36} r={e.r * 0.22} fill="#f2b21c" opacity={0.7} />
+						</g>
+					))}
+					<path d="M-70,-120 q190,-70 400,0" stroke="#9ff0b0" strokeWidth={6} fill="none" strokeDasharray="12 10" />
 				</g>
 			}
 		/>
